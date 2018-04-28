@@ -4,6 +4,8 @@
 
 using namespace std;
 
+//created by purnama sari//
+
 //----------------- Create ----------------//
 
 void createListPharmacy(pharmacys &R)
@@ -194,18 +196,18 @@ void printInfoDrug(pharmacys Pharmacy)
 }
 
 
-//----------------- Editing ----------------//
+//----------------- Edit ----------------//
 
 void editInfoPharmacy(pharmacys &Pharmacy)
 {
-    if(Pharmacy.first != NULL)  //Cek Apotek Apakah Kosong atau Tidak
+    if(Pharmacy.first != NULL)  //pharmacy empty or not
     {
         printInfoPharmacy(Pharmacy);
         string strSearchPharmacy;
         cout << "Input ID Pharmacy that you want to edit: ";
         cin>>strSearchPharmacy;
         cin.ignore();
-        addressPharmacy PPharmacy = findElmPharmacy(Pharmacy, strSearchPharmacy); //Mencari Elemen Apotek
+        addressPharmacy PPharmacy = findElmPharmacy(Pharmacy, strSearchPharmacy); //find elm pharmacy
         if(PPharmacy == NULL)
         {
             cout<<"Pharmacy's ID is not found"<<endl;
@@ -248,7 +250,7 @@ void editDrug(pharmacys &Pharmacy)
         {
             addressDrug M = PPharmacy->Druglist;
             cout << "List Drug Pharmacy - "<<PPharmacy->info.Pharmacyname<<endl;
-            while (M != NULL)  // Looping Untuk Menampilkan Obat Apotek
+            while (M != NULL)  // Looping for display pharmacy's drug
             {
                 cout<<"Drug's ID        : "<<M->info.idDrug<<endl;
                 cout<<"Drug's name      : "<<M->info.Drugname<<endl;
@@ -295,6 +297,7 @@ void editDrug(pharmacys &Pharmacy)
     }
 }
 
+//created by hasna zakiyyah//
 
 //----------------- Seacrhing ----------------//
 
@@ -386,7 +389,7 @@ void insertDrugFirst(addressPharmacy PPharmacy, infotypeDrug addDrug)
         cout <<"Pharmacy is not found";
     }else{
         addressDrug M = alokasiDrug(addDrug);
-        if (PPharmacy->Druglist == NULL)  //PAPK itu Elemet parennya kalau daftar obat list childnya //daftar obat milik element parent
+        if (PPharmacy->Druglist == NULL)
         {
             PPharmacy->Druglist = M;
         }
@@ -442,7 +445,7 @@ void insertDrugAfter(addressPharmacy PPharmacy, infotypeDrug addDrug)
         cout << "list of pharmacy - "<<PPharmacy->info.Pharmacyname<<endl;
         while (M != NULL)
         {
-            //looping untuk menampilkan obat apotek
+            //looping for display pharmacy
             cout << "Data is found" << endl;
             cout << "Drug's ID      : " << M->info.idDrug << endl;
             cout << "Drug's name    : " << M->info.Drugname << endl;
@@ -467,7 +470,7 @@ void insertDrugAfter(addressPharmacy PPharmacy, infotypeDrug addDrug)
             addPharmacySisip = alokasiDrug(addDrug);
             if (M->next == NULL)
             {
-                //Jika Elemen di Ujung
+                //if elm in the last
                 insertDrugLast(PPharmacy, addDrug);
             }
             else
@@ -532,7 +535,8 @@ DrugLabel :
     }
 }
 
-//----------------- Delete Apotek ----------------//
+//created by purnama sari//
+//----------------- Delete Pharmacy ----------------//
 
 addressPharmacy deleteFirstPharmacy(pharmacys &Pharmacy)
 {
@@ -607,7 +611,7 @@ void deleteAfterPharmacy(pharmacys &Pharmacy)
         else
         {
             addressPharmacy P = R->next;
-            if (P->next == NULL)  //elemen yang dihapus berada diujung
+            if (P->next == NULL)  //delete elm in last
             {
                 R->next = NULL;
                 P->prev = NULL;
@@ -615,7 +619,7 @@ void deleteAfterPharmacy(pharmacys &Pharmacy)
             }
             else
             {
-                //elemen yang dihapus di tenggah-tenggah
+                //deleted elm in middle
                 R->next = P->next;
                 P->prev->prev = R;
                 P->next = NULL;
@@ -636,7 +640,7 @@ void deletePharmacybyID(pharmacys &Pharmacy)
     addressPharmacy PPharmacy = findElmPharmacy(Pharmacy, searchPharmacy);
     if (PPharmacy == NULL)
     {
-        //ksus elemen tidak ditemukan
+        //not found
         cout<<"pharmacy id not found"<<endl;
     }
     else
@@ -649,17 +653,17 @@ void deletePharmacybyID(pharmacys &Pharmacy)
         }
         else if ((PPharmacy == Pharmacy.first) && (PPharmacy->next != NULL))
         {
-            //Kasus elemen Yang di delete di elemen yang pertama
+            //first of delete after
             deleteFirstPharmacy(Pharmacy);
         }
         else if ((PPharmacy == Pharmacy.last) && (PPharmacy->prev != NULL))
         {
-            //Kasus Elemen yang di delete elemen terakhir
+            //last of delete after
             deleteLastPharmacy(Pharmacy);
         }
         else if ((PPharmacy != Pharmacy.first) && (PPharmacy != Pharmacy.last) && (PPharmacy->next != NULL))
         {
-            //kasus element di tenggah delete after
+            //middle of delete after
             addressPharmacy P =PPharmacy->prev;
             PPharmacy->next = PPharmacy->next;
             PPharmacy->next->prev = P;
@@ -718,7 +722,8 @@ DrugLabel :
     }
 }
 
-//----------------- Delete Obat ----------------//
+//create by hasna zakiyyah//
+//----------------- Delete Drug ----------------//
 
 void deleteDrugFirst(pharmacys &Pharmacy)
 {
@@ -825,7 +830,7 @@ void deleteDrugAfter(pharmacys &Pharmacy)
             cout << "List of Pharmacy Drugs - "<<PPharmacy->info.Pharmacyname<<endl;
             while (M != NULL)
             {
-                //Loping untuk menapilkan Obat Apotek
+                //Loping display pharmacy's drug
                 cout << "Data Found" << endl;
                 cout << "Drug ID          : " << M->info.idDrug<< endl;
                 cout << "Drug Name        : " << M->info.Drugname<< endl;
@@ -843,12 +848,12 @@ void deleteDrugAfter(pharmacys &Pharmacy)
             M = findElmDrug(PPharmacy, SearchIDDrug);
             if ((M != PPharmacy->Druglist) && (M->next == NULL))
             {
-                //elemen yang di ujung ya
+
                 cout<<"No More Drugs After This Drug"<<endl;
             }
             else if ((M == PPharmacy->Druglist) && (M->next == NULL))
             {
-                // Jika Obat Tunggal
+
                 cout<<"the only one drugs available in this pharmacy"<<endl;
             }
             else
@@ -878,7 +883,7 @@ void deleteDrugByID(pharmacys &Pharmacy)
     printInfoPharmacy(Pharmacy);
     cout <<"input pharmacy ID that the drug want to delete: ";
     getline(cin, SearchIDPharmacy);
-    addressPharmacy  PPharmacy = findElmPharmacy(Pharmacy, SearchIDPharmacy); //mengambil keberadaan APK dimana
+    addressPharmacy  PPharmacy = findElmPharmacy(Pharmacy, SearchIDPharmacy); //take position of pharmacy
     if (PPharmacy == NULL)
     {
         cout << "pharmacy not found";
@@ -893,7 +898,7 @@ void deleteDrugByID(pharmacys &Pharmacy)
         else
         {
             cout << "List of Pharmacy Drugs - "<<PPharmacy->info.Pharmacyname<<endl;
-            while (M != NULL)  //Looping untuk menamoikan Obat Apotek
+            while (M != NULL)
             {
                 cout << "Data Found" << endl;
                 cout << "Drug ID          : " << M->info.idDrug<< endl;
@@ -912,7 +917,7 @@ void deleteDrugByID(pharmacys &Pharmacy)
             M = PPharmacy->Druglist;
             while (M != NULL)
             {
-                //looping untuk posisi elemnt yang dihapus
+                //looping delete elm
                 if (M->info.idDrug == SearchIDDrug)
                 {
                     break;
@@ -930,17 +935,17 @@ void deleteDrugByID(pharmacys &Pharmacy)
             {
                 if (PPharmacy->Druglist->next == NULL)
                 {
-                    //jika terdapat satu obat
+                    //if there is one drug
                     PPharmacy->Druglist = NULL;
                     delete M;
                     cout << "Drug Successfully Deleted"<<endl;
                 }
 
-                else  // Jika Terdapat Banyak Obat
+                else  // if many drug
                 {
                     if (M == PPharmacy->Druglist)
                     {
-                        //jika ada di awal list
+                        //first position
                         addressDrug  Q = PPharmacy->Druglist;
                         while (Q->next != M)
                         {
@@ -953,7 +958,7 @@ void deleteDrugByID(pharmacys &Pharmacy)
                     else if (M->next == NULL)
                     {
                         addressDrug Q = PPharmacy->Druglist;
-                        //jika berada di tenggah
+                        //middle position
                         while (Q->next != M)
                         {
                             Q = Q->next;
@@ -983,7 +988,7 @@ void deleteDrugByID(pharmacys &Pharmacy)
 }
 
 //Address P;
-//void deleteID(apotek,12,P);
+//void deleteID(Pharmacy,12,P);
 
 void deleteDrugOption(pharmacys &Pharmacy)
 {
@@ -1040,7 +1045,7 @@ lastDrug :
 }
 void insertFirstPharmacy(pharmacys &R, addressPharmacy P)
 {
-    if (first(R)== NULL) //kondisi ketika list kosong
+    if (first(R)== NULL) //empty list
     {
         first(R) = P;
         last(R) = P;
@@ -1058,7 +1063,7 @@ void insertLastPharmacy(pharmacys &R, addressPharmacy P)
 {
     if(first(R) == NULL)
     {
-        //kondisi ketika list ksosong
+        //list empty
         first(R) = P;
         last(R) = P;
     }
@@ -1108,8 +1113,8 @@ void insertAfterPharmacy(pharmacys &R, addressPharmacy P)
     }
 }
 
-
-//----------------- Penambahan Insert Parent Apotek  ----------------//
+//created by purnama sari//
+//----------------- add insert pharmacy's parent  ----------------//
 
 void addpharmacys(pharmacys &R)
 {
@@ -1146,7 +1151,7 @@ Druglabel :
 }
 
 
-//----------------- Penambahan Counter  ----------------//
+//----------------- add counter  ----------------//
 
 void countTotalPharmacy(pharmacys Pharmacy)
 {
@@ -1184,9 +1189,9 @@ void countTotalDrug(pharmacys Pharmacy)
         addressPharmacy PPharmacy = findElmPharmacy(Pharmacy, SearchByIDPharmacy);
         if (PPharmacy != NULL)
         {
-            int countNum = 0; //counter hitung
+            int countNum = 0; //count
             addressDrug M = PPharmacy->Druglist;
-            //looping hitung element
+            //looping for count elm
             while (M != NULL)
             {
                 countNum++;
@@ -1229,7 +1234,7 @@ Druglabel :
     }
 }
 
-
+//created by hasna zakiyyah//
 //----------------- Sorting Metode Merger Sort----------------//
 addressPharmacy cekmin (pharmacys Pharmacy)
 {
@@ -1267,7 +1272,7 @@ void sortpharmacys(pharmacys &Pharmacy)
         addressPharmacy P;
         P = cekmin(Pharmacy);
 
-//        if (P !=NULL)sortobat(P->daftarObat);
+//        if (P !=NULL)sortDrug(P->ListDrug);
         if (next(P) == NULL)
         {
             deleteLastPharmacy(Pharmacy);
@@ -1343,7 +1348,7 @@ void sortDrug(addressDrug &Pharmacy)
         cout << Pharmacy;
         addressDrug P;
         P = cekmin(Pharmacy);
-       //NGELUARIN MIN DARI APK
+       //out min form pharmacy
         if (P != NULL)
         {
             if (next(P) != NULL){
@@ -1369,7 +1374,7 @@ void sortDrug(addressDrug &Pharmacy)
                 next(Q) = next(P);
             }
         }
-        //NGELUARIN MIN DARI APK
+        //out from pharmacy
 
         next(P) = NULL;
         if (P != NULL)
@@ -1395,18 +1400,18 @@ void sortDrug(addressDrug &Pharmacy)
     Pharmacy = A2;
 }
 //
-//void sortobat(addressObat &APK)
+//void sortDrug(addressDrug &Pharmacy)
 //{
 //
-//    addressObat A2;
-//    while(APK != NULL)
+//    addressDrug A2;
+//    while(Pharmacy != NULL)
 //    {
-//        addressObat P;
-//        P = cekmin(APK);
+//        addressDrug P;
+//        P = cekmin(Pharmacy);
 //        if (next(P) == NULL)
 //        {
-//            addressObat Q;
-//            Q = APK;
+//            addressDrug Q;
+//            Q = Pharmacy;
 //            while(next(Q) != P){
 //                Q = next(Q);
 //            }
@@ -1414,13 +1419,13 @@ void sortDrug(addressDrug &Pharmacy)
 //        }
 //        else
 //        {
-//            if (P == APK)
+//            if (P == Pharmacy)
 //            {
-//                APK = next(APK);
+//                Pharmacy = next(Pharmacy);
 //            }
 //            else
 //            {
-//                addressObat Q = APK;
+//                addressObat Q = Pharmacy;
 //                while(next(Q) != P)
 //                    Q = next(Q);
 //                next(Q) = next(P);
@@ -1429,8 +1434,8 @@ void sortDrug(addressDrug &Pharmacy)
 //        next(P) = NULL;
 //        if (P != NULL)
 //        {
-//            addressObat Q;
-//            Q = APK;
+//            addressDrug Q;
+//            Q = Pharmacy;
 //            while(next(Q) != NULL){
 //                Q = next(Q);
 //            }
@@ -1438,5 +1443,5 @@ void sortDrug(addressDrug &Pharmacy)
 //            next(P) = NULL;
 //        }
 //    }
-//    APK = A2;
+//    Pharmacy = A2;
 //}

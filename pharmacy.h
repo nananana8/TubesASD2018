@@ -15,7 +15,7 @@
 
 using namespace std;
 
-// ---- Deklarasi Pointer addressAPK --- //
+// ---- Deklarasi Pointer address pharmacy --- //
 typedef int *addressMember;
 typedef struct elmPharmacy *addressPharmacy;
 typedef struct elmDrug *addressDrug;
@@ -41,7 +41,7 @@ struct infotypeDrug {
 
 // ------ Tipe Bentukan Element List ------ //
 
-//Tipe bentukan Parent Apotek
+//Tipe bentukan Parent Pharmacy
 struct elmPharmacy
 {
     infotypePharmacy info;
@@ -50,7 +50,7 @@ struct elmPharmacy
     addressPharmacy prev;
 };
 
-//Tipe bentukan Child Obat
+//Tipe bentukan Child Drug
 struct elmDrug
 {
     infotypeDrug info;
@@ -69,7 +69,7 @@ struct Drug
     addressDrug first;
 };
 
-//----------------- Fungsi dan Prosedur Default ----------------//
+//----------------- default of function and procedure ----------------//
 void createListDrug(Drug &R);
 void createListPharmacy(pharmacys &Pharmacy);
 void createDrug(infotypeDrug &DrugPharmacy);

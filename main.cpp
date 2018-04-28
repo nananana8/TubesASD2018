@@ -14,7 +14,8 @@ int main () {
     addressDrug addDrug;
     infotypeDrug dataDrug;
 
-    {   // Test Case Parent Apotek
+//created by purnama sari//
+    {   // Test Case Parent pharmacy
 
         dataPharmacy.idPharmacy = "Pharmacy-0010";
         dataPharmacy.Pharmacyname = "K-24 Pharmacy";
@@ -57,7 +58,8 @@ int main () {
         addPharmacy = alokasiPharmacy(dataPharmacy);
         insertLastPharmacy(mainPharmacy, addPharmacy);
 
-        //Test case Obat
+        //created by hasna zakiyyah//
+        //Test case drug
 
         dataDrug.idDrug="Drug-001";
         dataDrug.Drugname="Oskadon";
@@ -88,7 +90,8 @@ int main () {
     }
     Druglabel:
     system("cls");
-    cout << "- - - ASD BIG PROJECT - - -"<<endl;
+    cout << "- - - ASD BIG PROJECT [1301164599 & 1301160541] - - -"<<endl;
+    cout << "Pharmacy's and Drug's";
       cout   <<endl;
 cout<< "1. Insert Pharmacy Store" << endl;
 cout<< "2. Insert Drug Pharmacy" << endl;
