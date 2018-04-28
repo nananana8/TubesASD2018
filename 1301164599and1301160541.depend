@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1524911771 source:d:\new folder\1301164599and1301160541\main.cpp
+	<iostream>
+	"pharmacy.h"
+	<stdlib.h>
+	<conio.h>
+	<string>
+
+1524910341 d:\new folder\1301164599and1301160541\pharmacy.h
+	<iostream>
+	<time.h>
+
+1524911502 source:d:\new folder\1301164599and1301160541\pharmacy.cpp
+	"pharmacy.h"
+	<iostream>
+
